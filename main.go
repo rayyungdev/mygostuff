@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
+
+	"github.com/rayyungdev/mygostuff/hashmappy"
 	"github.com/rayyungdev/mygostuff/linkedlist"
 )
 
-func linkedListExample() {
+func LinkedListExample() {
 	/* Example from: https://www.youtube.com/watch?v=PGcTioRPBhU&t=212s */
 	mylist := linkedlist.LinkedList[int]{}
 	node1 := &linkedlist.Node[int]{}
@@ -32,6 +35,32 @@ func linkedListExample() {
 	emptyList.PrintListData()
 }
 
+func hashMapExample() {
+	hashTable := hashmappy.Init[string]()
+	list := []string{
+		"ERIC",
+		"KYLE",
+		"STAN",
+		"BUTTERS",
+		"RANDY",
+		"TOKEN",
+	}
+
+	for _, v := range list {
+		hashTable.Insert(v)
+	}
+	result := hashTable.Search("KYLE")
+
+	fmt.Println("FOUND KYLE: ", result)
+
+	hashTable.Delete("KYLE")
+
+	fmt.Println("Delete Kyle it shouldn't exist")
+	fmt.Printf("Check Kyle: %+v", hashTable.Search("KYLE"))
+
+}
+
 func main() {
-	linkedListExample()
+	// linkedListExample()
+	hashMapExample()
 }
