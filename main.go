@@ -3,8 +3,11 @@ package main
 import (
 	"fmt"
 
+	"time"
+
 	"github.com/rayyungdev/mygostuff/hashmappy"
 	"github.com/rayyungdev/mygostuff/linkedlist"
+	"github.com/rayyungdev/mygostuff/otherthings"
 )
 
 func LinkedListExample() {
@@ -61,6 +64,15 @@ func hashMapExample() {
 }
 
 func main() {
-	// linkedListExample()
+	client := otherthings.StartNewCollection(5*time.Minute, "Things")
+	LinkedListExample()
 	hashMapExample()
+	client.AddToCollectionLocked("THINGS", map[string]string{"Hello": "No"})
+
+	test, err := client.RetrieveItemLocked("THINGS")
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("\n\n%+v", *test)
 }

@@ -96,7 +96,3 @@ func Init[T string]() *HashTable[T] {
 	}
 	return result
 }
-
-// insert
-// search
-// delete
